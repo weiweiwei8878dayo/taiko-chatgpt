@@ -1,53 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>太鼓の達人風ゲーム</title>
+  <title>ドンちゃん・カッチャン</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
+    .container {
+      position: relative;
+      width: 100%;
+      height: 200px; /* ドンちゃん・カッチャンの高さ */
+      overflow: hidden;
+      background-color: black;
     }
-    .timing {
-      font-size: 48px;
-      font-weight: bold;
+    .don-chan, .ka-chan {
+      position: absolute;
+      top: 0;
+      width: 50px; /* ドンちゃん・カッチャンの幅 */
+      height: 100%; /* ドンちゃん・カッチャンの高さ */
+      background-repeat: no-repeat;
+      background-size: contain;
     }
-    .score {
-      font-size: 24px;
+    .don-chan {
+      right: 0;
+      background-image: url('don_chan.png'); /* ドンちゃんの画像の URL を指定 */
+    }
+    .ka-chan {
+      right: -50px; /* ドンちゃん・カッチャンの幅分だけ左にずらす */
+      background-image: url('ka_chan.png'); /* カッチャンの画像の URL を指定 */
     }
   </style>
 </head>
 <body>
-  <h1>太鼓の達人風ゲーム</h1>
-  <p>ルール: 'A'と'D'のキーを交互に入力してください。</p>
-  <div class="timing" id="timingDisplay"></div>
-  <div class="score" id="scoreDisplay">スコア: 0</div>
-  <script>
-    // ゲームのスコア
-    let score = 0;
-    // タイミングをランダムに生成する関数
-    function generateTiming() {
-      const timings = ["A", "D"];
-      return timings[Math.floor(Math.random() * timings.length)];
-    }
-    // タイミングを表示する関数
-    function displayTiming(timing) {
-      document.getElementById("timingDisplay").innerText = "タイミング: " + timing;
-    }
-    // スコアを表示する関数
-    function displayScore() {
-      document.getElementById("scoreDisplay").innerText = "スコア: " + score;
-    }
-    // キー入力のイベントリスナー
-    document.addEventListener("keydown", function(event) {
-      const timing = generateTiming();
-      displayTiming(timing);
-      if (event.key.toUpperCase() === timing) {
-        console.log("成功！");
-        score++;
-      } else {
-        console.log("失敗...");
-      }
-      displayScore();
-    });
-  </script>
-</body>
-</html>
+  <div class="container">
