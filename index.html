@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>太鼓の達人風ゲーム</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .timing {
+      font-size: 48px;
+      font-weight: bold;
+    }
+    .score {
+      font-size: 24px;
+    }
+  </style>
+</head>
+<body>
+  <h1>太鼓の達人風ゲーム</h1>
+  <p>ルール: 'A'と'D'のキーを交互に入力してください。</p>
+  <div class="timing" id="timingDisplay"></div>
+  <div class="score" id="scoreDisplay">スコア: 0</div>
+  <script>
+    // ゲームのスコア
+    let score = 0;
+    // タイミングをランダムに生成する関数
+    function generateTiming() {
+      const timings = ["A", "D"];
+      return timings[Math.floor(Math.random() * timings.length)];
+    }
+    // タイミングを表示する関数
+    function displayTiming(timing) {
+      document.getElementById("timingDisplay").innerText = "タイミング: " + timing;
+    }
+    // スコアを表示する関数
+    function displayScore() {
+      document.getElementById("scoreDisplay").innerText = "スコア: " + score;
+    }
+    // キー入力のイベントリスナー
+    document.addEventListener("keydown", function(event) {
+      const timing = generateTiming();
+      displayTiming(timing);
+      if (event.key.toUpperCase() === timing) {
+        console.log("成功！");
+        score++;
+      } else {
+        console.log("失敗...");
+      }
+      displayScore();
+    });
+  </script>
+</body>
+</html>
